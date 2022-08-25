@@ -10,7 +10,7 @@ from PIL import Image
 from PIL import ImageTk
 
 
-#arduinoData=serial.Serial('com3',115200)
+arduinoData=serial.Serial('com3',115200)
 
 def Communicate(x,y,R,phid,thetad):
     print('x= ',x)
@@ -21,18 +21,18 @@ def Communicate(x,y,R,phid,thetad):
 
     steps = round(phid/.09)
     #load command strings with thetad and steps
-    cmd1 = str(thetad) + '\r'
+    cmd1 = str(-thetad) + '\r'
 
     cmd2 = str(steps) + '\r'
 
     #write launch instructions to arduino
-    #arduinoData.write(cmd1.encode())
-    #arduinoData.write(cmd2.encode())
+    arduinoData.write(cmd1.encode())
+    arduinoData.write(cmd2.encode())
 
 
 
 
-#variable intialization--------------------------
+##variable intialization--------------------------
 rc = float(1.75) #radius of the cup
 g = float(-32.2)  #gravity in ft/s
 ht = float(10) #idk what this is yet
